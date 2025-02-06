@@ -8,14 +8,13 @@ function App() {
   const [score, setScore] = useState(0);
   const [newGame, setNewGame] = useState(false);
   const [clickedColor, setClickedColor] = useState('');
-  const [lives, setLives] = useState(3); // Track lives
+  const [lives, setLives] = useState(3); 
 
   // Generate the random color
   const generateRandomColor = () => {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
   };
 
-  // Generate color options including target color
   const generateColorOptions = (target) => {
     const colors = [target];
     while (colors.length < 6) {
@@ -25,7 +24,6 @@ function App() {
     return colors.sort(() => Math.random() - 0.5);
   };
 
-  // Initialize game
   useEffect(() => {
     const newTarget = generateRandomColor();
     setTargetColor(newTarget);
@@ -34,12 +32,11 @@ function App() {
     setClickedColor('');
   }, [newGame]);
 
-  // Handle color guess
   const handleGuess = (selectedColor) => {
-    setClickedColor(selectedColor); // Mark the selected color as clicked
+    setClickedColor(selectedColor); 
 
     if (selectedColor === targetColor) {
-      setScore((prev) => prev + 1);
+      setScore((prev) => prev + 5);
       setGameStatus('Correct! Well done! 🎉');
       setTimeout(() => {
         if (lives > 0) {
@@ -47,25 +44,24 @@ function App() {
         }
       }, 1500);
     } else {
-      setLives((prev) => prev - 1); // Deduct a life for a wrong guess
+      setLives((prev) => prev - 1); 
       setGameStatus('Wrong! Try again! ❌');
       if (lives <= 1) {
-        setGameStatus('Game Over! You ran out of lives! ❌');
+        setGameStatus(`Game Over! You ran out of lives! ❌\n Total score: ${score}`);
       }
     }
   };
 
-  // Start new game
   const handleNewGame = () => {
     setNewGame((prev) => !prev);
     setScore(0);
-    setLives(3); // Reset lives when starting a new game
+    setLives(3); 
   };
 
   return (
     <div className="min-h-screen bg-gray-100 p-8 flex flex-col items-center">
       <div className="mb-4 text-lg font-semibold text-gray-700">
-        Lives: {lives} {/* Display lives */}
+        Lives: {lives} 
       </div>
 
       <div
@@ -76,7 +72,7 @@ function App() {
 
       <div data-testid="gameInstructions" className="mb-4 text-center">
         <h1 className="text-2xl font-bold text-gray-800 mb-2">Guess the Color!</h1>
-        <p className="text-gray-600">Select the color that matches the box above!</p>
+        <p className="text-gray-600">Guess the color that matches the box above!</p>
       </div>
 
       <div data-testid="score" className="mb-4 text-lg font-semibold text-gray-700">
