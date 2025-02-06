@@ -12,8 +12,8 @@ A simple and fun color guessing game built using React. The game challenges you 
 **How to Play**
 1. The game will display a box with a random color.
 2. You need to select the button that matches the color in the box.
-3. Each correct guess increases your score by 1.
-4. If you make a wrong guess, your remaining lives decrease by 1.
+3. Each correct guess increases your score by 5.
+4. If you make a wrong guess, your remaining lives decrease by 5.
 5. Once your lives reach 0, the game ends, and you are shown your final score.
 
 **Tech Stack**
